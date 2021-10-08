@@ -15,6 +15,7 @@ DEATH_DATE = 'DEATH DATE'
 DAYS_LIVED = 'DAYS LIVED'
 YEARS_LIVED = 'YEARS LIVED'
 MONTHS_LIVED = 'MONTHS LIVED'
+PRESIDENT = 'PRESIDENT'
 
 # ---------- Helper Functions --------
 def print_df(df):
@@ -87,4 +88,12 @@ df[DAYS_LIVED] = df.apply(
 
 
 # Find longest 10 and shortest 10 living presidents.
-print_df(df)
+livingDaysAscending = df.sort_values(by=DAYS_LIVED, ascending=False).head(10)
+print('The 10 longest living presidents are: ')
+print_df(livingDaysAscending[[PRESIDENT, DAYS_LIVED]])
+print('')
+
+livingDaysDescending = df.sort_values(by=DAYS_LIVED, ascending=True).head(10)
+print('The 10 shortest living presidents are: ')
+print_df(livingDaysDescending[[PRESIDENT, DAYS_LIVED]])
+print('')
