@@ -60,12 +60,14 @@ def get_lived_days(birth_date, death_date):
 
 # ----------  Logic --------
 # Pulling data from CSV into a dataframe.
+print('Reading data from csv... done!')
 filename = 'U.S. Presidents Birth and Death Information - Sheet1.csv'
 df = pd.read_csv(filename, skipfooter=1, engine='python')  # We skip the last row because it contains just a reference.
 pd.set_option('display.max_colwidth', None)
 
 
 # Calculate new variables and append them to data.
+print('Calculating new variables from data... done!')
 # year_of_birth
 df[YEAR_OF_BIRTH] = df[BIRTH_DATE].map(lambda x: get_year_of_birth(x))
 
@@ -90,19 +92,19 @@ df[DAYS_LIVED] = df.apply(
 
 # Find longest 10 and shortest 10 living presidents.
 livingDaysAscending = df.sort_values(by=DAYS_LIVED, ascending=False).head(10)
-print('The 10 longest living presidents are: ')
+print('\nThe 10 longest living presidents are: ')
 print_df(livingDaysAscending[[PRESIDENT, DAYS_LIVED]])
 print('')
 
 livingDaysDescending = df.sort_values(by=DAYS_LIVED, ascending=True).head(10)
-print('The 10 shortest living presidents are: ')
+print('\nThe 10 shortest living presidents are: ')
 print_df(livingDaysDescending[[PRESIDENT, DAYS_LIVED]])
 print('')
 
 # Calculating mean, weighted mean, median, mode, max, min and standard deviation of lived_days.
 # P.S: I will gladly explain how to calculate these without the pandas functions using a programmatic approach :)
 
-print('Calculations: ')
+print('\nCalculations: ')
 
 # mean
 mean = df[DAYS_LIVED].mean()
